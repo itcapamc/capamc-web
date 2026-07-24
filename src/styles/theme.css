@@ -1,0 +1,52 @@
+/*
+ * theme.css — single source of design tokens (Khan Academy–inspired: friendly,
+ * rounded, high-contrast primary blue with a warm three-accent system).
+ * Components only reference these tokens (bg-primary, text-ink, font-display),
+ * never literal hex/px values.
+ */
+
+@theme {
+  /* ---- colors ---- */
+  --color-paper: #ffffff;
+  --color-paper-sunk: #f4f7fb;
+  --color-ink: #21242c;
+  --color-ink-soft: #5c6370;
+
+  --color-primary: #1865f2;
+  --color-primary-deep: #0f4fc4;
+
+  --color-seal: #ef5350;
+  --color-seal-deep: #d8433f;
+  --color-jade: #14a37f;
+  --color-jade-deep: #0f8267;
+  --color-gold: #ffb020;
+  --color-gold-deep: #e0961a;
+
+  --color-line: #e7ebf1;
+
+  /* ---- fonts (Latin via Fontsource; CJK falls back to system stacks) ---- */
+  --font-display: "Baloo 2 Variable", "Fredoka", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-body: "Inter Variable", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-cjk-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  /* ---- radii ---- */
+  --radius-seal: 16px;
+  --radius-card: 22px;
+  --radius-pill: 999px;
+
+  /* ---- shadows ---- */
+  --shadow-card: 0 10px 30px -12px rgba(33, 36, 44, 0.15);
+  --shadow-card-hover: 0 18px 40px -14px rgba(33, 36, 44, 0.22);
+
+  /* ---- layout rhythm ---- */
+  --spacing-gutter: 1.5rem;
+  --container-content: 76rem;
+  --container-reading: 42rem;
+
+  /* ---- motion ---- */
+  --motion-fast: 140ms;
+  --motion-base: 220ms;
+  --motion-slow: 480ms;
+  --ease-seal: cubic-bezier(0.16, 1, 0.3, 1);
+}

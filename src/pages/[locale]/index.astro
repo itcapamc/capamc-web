@@ -1,0 +1,37 @@
+---
+import "../../styles/global.css";
+
+export function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "zh" } }];
+}
+
+const { locale } = Astro.params;
+---
+
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>CAPA-MC</title>
+	</head>
+	<body class="bg-paper text-ink font-body">
+		<main class="mx-auto max-w-(--container-content) px-6 py-20">
+			<span class="inline-flex rounded-pill bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
+				{locale === "zh" ? "设计令牌接线测试" : "Design token wiring check"}
+			</span>
+			<h1 class="mt-4 font-display text-4xl text-ink">
+				{locale === "zh" ? "占位首页" : "Placeholder home"}
+			</h1>
+			<div class="mt-8 grid gap-6 sm:grid-cols-3">
+				<div class="rounded-card bg-paper-sunk p-6 shadow-card border-t-8 border-seal">Seal</div>
+				<div class="rounded-card bg-paper-sunk p-6 shadow-card border-t-8 border-jade">Jade</div>
+				<div class="rounded-card bg-paper-sunk p-6 shadow-card border-t-8 border-gold">Gold</div>
+			</div>
+			<button class="mt-10 rounded-pill bg-primary px-6 py-3 font-bold text-white shadow-card transition-transform hover:-translate-y-0.5 hover:bg-primary-deep">
+				{locale === "zh" ? "加入 CAPA-MC" : "Join CAPA-MC"}
+			</button>
+		</main>
+	</body>
+</html>
