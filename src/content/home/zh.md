@@ -9,17 +9,17 @@ hero:
   secondary:
     label: "支持我们"
     href: "/zh/give"
-  image: "/images/photo-community.jpg"
+  image: "/images/uploads/photo-community.jpg"
   imageAlt: "CAPA-MC 家庭与学生在社区活动中"
 slides:
   - title: "社区"
-    image: "/images/photo-community.jpg"
+    image: "/images/uploads/photo-community.jpg"
     imageAlt: "CAPA-MC 家庭齐聚社区活动"
   - title: "倡导"
-    image: "/images/photo-advocacy.jpg"
+    image: "/images/uploads/photo-advocacy.jpg"
     imageAlt: "CAPA-MC 与学生、家长一起发声"
   - title: "学习"
-    image: "/images/photo-learning.jpg"
+    image: "/images/uploads/photo-learning.jpg"
     imageAlt: "学生们一起学习"
 pillars:
   - title: "倡导与合作"

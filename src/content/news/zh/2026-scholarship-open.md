@@ -3,7 +3,7 @@ title: "2026 年 Dr. Alan Cheung 奖学金开始申请"
 date: "2026-02-22"
 location: "线上"
 excerpt: "2026 年 Dr. Alan Cheung 社区领导力奖学金现已开放申请，计划颁发 15 个个人奖与 5 个团体奖。"
-image: "/images/news-scholarship.jpg"
+image: "/images/uploads/news-scholarship.jpg"
 imageAlt: "学生在社区中做志愿服务"
 ---
 

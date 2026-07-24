@@ -3,7 +3,7 @@ title: "2026 Dr. Alan Cheung Scholarship applications open"
 date: "2026-02-22"
 location: "Online"
 excerpt: "Applications for the 2026 Dr. Alan Cheung Community Leadership Scholarship are now open, with 15 individual and 5 group awards planned."
-image: "/images/news-scholarship.jpg"
+image: "/images/uploads/news-scholarship.jpg"
 imageAlt: "Students volunteering in the community"
 ---
 

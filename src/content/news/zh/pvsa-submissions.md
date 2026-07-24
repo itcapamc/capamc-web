@@ -3,7 +3,7 @@ title: "总统志愿服务奖开始受理申请"
 date: "2025-05-01"
 location: "线上"
 excerpt: "CAPA-MC 为符合条件的志愿者认证总统志愿服务奖。了解如何记录并提交您的服务时长。"
-image: "/images/news-pvsa.jpg"
+image: "/images/uploads/news-pvsa.jpg"
 imageAlt: "青少年志愿者获得表彰"
 ---
 

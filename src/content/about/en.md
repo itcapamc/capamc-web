@@ -1,7 +1,7 @@
 ---
 title: "About us"
 intro: "The Chinese American Parent Association of Montgomery County (CAPA-MC) was founded in 2016 as a 501(c)(3) nonprofit serving and advocating for Chinese American families in Montgomery County."
-image: "/images/about.png"
+image: "/images/uploads/about.png"
 imageAlt: "CAPA-MC board members and volunteers"
 ---
 

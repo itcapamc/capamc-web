@@ -1,7 +1,7 @@
 ---
 title: "关于我们"
 intro: "蒙郡华裔家长联合会（CAPA-MC）成立于 2016 年，是一家 501(c)(3) 非营利组织，服务并倡导蒙哥马利郡的华裔家庭。"
-image: "/images/about.png"
+image: "/images/uploads/about.png"
 imageAlt: "CAPA-MC 理事会成员与志愿者"
 ---
 

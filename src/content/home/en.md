@@ -9,17 +9,17 @@ hero:
   secondary:
     label: "Ways to give"
     href: "/en/give"
-  image: "/images/photo-community.jpg"
+  image: "/images/uploads/photo-community.jpg"
   imageAlt: "CAPA-MC families and students at a community event"
 slides:
   - title: "Community"
-    image: "/images/photo-community.jpg"
+    image: "/images/uploads/photo-community.jpg"
     imageAlt: "CAPA-MC families gathered at a community event"
   - title: "Advocacy"
-    image: "/images/photo-advocacy.jpg"
+    image: "/images/uploads/photo-advocacy.jpg"
     imageAlt: "CAPA-MC advocating alongside students and parents"
   - title: "Learning"
-    image: "/images/photo-learning.jpg"
+    image: "/images/uploads/photo-learning.jpg"
     imageAlt: "Students learning together"
 pillars:
   - title: "Advocacy & partnership"
