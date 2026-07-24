@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import Card from "@/components/Card.astro";
+import { getEntry } from "astro:content";
+import { getDictionary, type Locale } from "@/i18n/locales";
+
+export function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "zh" } }];
+}
+
+const ACCENTS = ["seal", "jade", "gold"] as const;
+
+const locale = Astro.params.locale as Locale;
+const other: Locale = locale === "en" ? "zh" : "en";
+
+const entry = await getEntry("clubs", locale);
+const otherEntry = await getEntry("clubs", other);
+if (!entry || !otherEntry) throw new Error(`Missing clubs content for ${locale}`);
+
+const dict = await getDictionary(locale);
+---
+
+<BaseLayout locale={locale} dict={dict} title={dict.nav.clubs}>
+	<PageHeader
+		eyebrow={dict.nav.clubs}
+		title={entry.data.title}
+		titleLang={locale}
+		titleAlt={otherEntry.data.title}
+		titleAltLang={other}
+		intro={entry.data.intro}
+	/>
+	<Container class="py-16 lg:py-24">
+		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{entry.data.items.map((club, i) => {
+				const accent = ACCENTS[i % ACCENTS.length];
+				const cardBody = (
+					<>
+						{club.category && (
+							<span class="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-ink-soft">
+								{club.category}
+							</span>
+						)}
+						<h3 class="mt-2 font-display text-base font-semibold text-ink">{club.name}</h3>
+						<p class="mt-2 text-sm text-ink-soft">{club.description}</p>
+						{club.link && (
+							<span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors group-hover:text-primary-deep">
+								{dict.actions.visitSite}
+								<span aria-hidden="true">↗</span>
+							</span>
+						)}
+					</>
+				);
+				return club.link ? (
+					<a href={club.link} target="_blank" rel="noopener noreferrer" class="group block">
+						<Card accent={accent} class="h-full">{cardBody}</Card>
+					</a>
+				) : (
+					<Card accent={accent} class="h-full">{cardBody}</Card>
+				);
+			})}
+		</div>
+	</Container>
+</BaseLayout>

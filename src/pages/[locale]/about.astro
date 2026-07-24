@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ImageFrame from "@/components/ImageFrame.astro";
+import Prose from "@/components/Prose.astro";
+import { getEntry, render } from "astro:content";
+import { getDictionary, type Locale } from "@/i18n/locales";
+
+export function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "zh" } }];
+}
+
+const locale = Astro.params.locale as Locale;
+const other: Locale = locale === "en" ? "zh" : "en";
+
+const entry = await getEntry("about", locale);
+const otherEntry = await getEntry("about", other);
+if (!entry || !otherEntry) throw new Error(`Missing about content for ${locale}`);
+
+const { Content } = await render(entry);
+const dict = await getDictionary(locale);
+---
+
+<BaseLayout locale={locale} dict={dict} title={dict.nav.about}>
+	<PageHeader
+		eyebrow={dict.nav.about}
+		title={entry.data.title}
+		titleLang={locale}
+		titleAlt={otherEntry.data.title}
+		titleAltLang={other}
+		intro={entry.data.intro}
+	/>
+	<Container class="grid gap-12 py-16 lg:grid-cols-[1fr_0.7fr] lg:py-24">
+		<Prose>
+			<Content />
+		</Prose>
+		<div>
+			<ImageFrame src={entry.data.image} alt={entry.data.imageAlt ?? ""} class="aspect-[3/4] w-full" />
+		</div>
+	</Container>
+</BaseLayout>

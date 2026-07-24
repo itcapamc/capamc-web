@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import ImageFrame from "@/components/ImageFrame.astro";
+import Prose from "@/components/Prose.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { getDictionary, type Locale } from "@/i18n/locales";
+import { formatDate } from "@/lib/format";
+
+export async function getStaticPaths() {
+  const news = await getCollection("news");
+  return news.map((entry) => {
+    const [locale, ...rest] = entry.id.split("/");
+    return { params: { locale, slug: rest.join("/") } };
+  });
+}
+
+const locale = Astro.params.locale as Locale;
+const slug = Astro.params.slug as string;
+
+const entry = await getEntry("news", `${locale}/${slug}`);
+if (!entry) throw new Error(`Missing news entry ${locale}/${slug}`);
+
+const { Content } = await render(entry);
+const dict = await getDictionary(locale);
+---
+
+<BaseLayout locale={locale} dict={dict} title={entry.data.title}>
+	<article class="py-14 lg:py-20">
+		<Container>
+			<a
+				href={`/${locale}/news`}
+				class="font-mono text-xs uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-primary"
+			>
+				← {dict.nav.news}
+			</a>
+			<div class="mt-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.15em] text-ink-soft">
+				<time datetime={entry.data.date}>{formatDate(entry.data.date, locale)}</time>
+				{entry.data.location && <span>· {entry.data.location}</span>}
+			</div>
+			<h1 class="mt-3 max-w-reading font-display text-3xl font-semibold text-ink sm:text-4xl">
+				{entry.data.title}
+			</h1>
+		</Container>
+		{entry.data.image && (
+			<Container class="mt-10">
+				<ImageFrame src={entry.data.image} alt={entry.data.imageAlt ?? ""} class="aspect-[21/9] w-full" />
+			</Container>
+		)}
+		<Container class="mt-10">
+			<Prose>
+				<Content />
+			</Prose>
+		</Container>
+	</article>
+</BaseLayout>

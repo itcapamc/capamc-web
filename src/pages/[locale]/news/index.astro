@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ImageFrame from "@/components/ImageFrame.astro";
+import { getCollection } from "astro:content";
+import { getDictionary, type Locale } from "@/i18n/locales";
+import { formatDate } from "@/lib/format";
+
+export function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "zh" } }];
+}
+
+const locale = Astro.params.locale as Locale;
+
+const items = (await getCollection("news", (e) => e.id.startsWith(`${locale}/`)))
+  .map((e) => ({ ...e.data, slug: e.id.slice(locale.length + 1) }))
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const dict = await getDictionary(locale);
+---
+
+<BaseLayout locale={locale} dict={dict} title={dict.nav.news}>
+	<PageHeader eyebrow={dict.nav.news} title={dict.nav.news} titleLang={locale} />
+	<Container class="py-16 lg:py-24">
+		<div class="grid gap-10 sm:grid-cols-2">
+			{items.map((item) => (
+				<a href={`/${locale}/news/${item.slug}`} class="group flex flex-col">
+					<ImageFrame src={item.image} alt={item.imageAlt ?? ""} class="aspect-video w-full" />
+					<div class="mt-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.15em] text-ink-soft">
+						<time datetime={item.date}>{formatDate(item.date, locale)}</time>
+						{item.location && <span>· {item.location}</span>}
+					</div>
+					<h2 class="mt-2 font-display text-xl font-semibold text-ink transition-colors group-hover:text-primary">
+						{item.title}
+					</h2>
+					<p class="mt-2 text-sm text-ink-soft">{item.excerpt}</p>
+				</a>
+			))}
+		</div>
+	</Container>
+</BaseLayout>
