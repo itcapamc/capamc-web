@@ -1,0 +1,53 @@
+---
+import { cn } from "@/lib/cn";
+import type { Locale } from "@/i18n/locales";
+
+const fontFor = (lang: Locale) => (lang === "zh" ? "font-cjk-sans" : "font-display");
+
+interface Props {
+  primary: string;
+  primaryLang: Locale;
+  secondary?: string;
+  secondaryLang?: Locale;
+  as?: "h1" | "h2" | "h3";
+  size?: "hero" | "section";
+  class?: string;
+}
+
+const {
+  primary,
+  primaryLang,
+  secondary,
+  secondaryLang,
+  as: Tag = "h2",
+  size = "section",
+  class: className,
+} = Astro.props;
+---
+
+<Tag class={cn("text-balance", className)}>
+  <span
+    lang={primaryLang}
+    class={cn(
+      fontFor(primaryLang),
+      "block font-semibold tracking-tight text-ink",
+      size === "hero"
+        ? "text-4xl leading-[1.05] sm:text-5xl lg:text-6xl"
+        : "text-2xl leading-tight sm:text-3xl",
+    )}
+  >
+    {primary}
+  </span>
+  {secondary && secondaryLang && (
+    <span
+      lang={secondaryLang}
+      class={cn(
+        fontFor(secondaryLang),
+        "mt-2 block font-normal text-ink-soft",
+        size === "hero" ? "text-xl sm:text-2xl" : "text-base sm:text-lg",
+      )}
+    >
+      {secondary}
+    </span>
+  )}
+</Tag>

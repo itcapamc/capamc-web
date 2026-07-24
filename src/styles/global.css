@@ -1,21 +1,92 @@
 @import "tailwindcss";
 @import "./theme.css";
 
-html {
-  font-family: var(--font-body);
-  color: var(--color-ink);
-  background: var(--color-paper);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :lang(zh) {
+    font-family: var(--font-cjk-sans);
+  }
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
 
-:lang(zh) {
+/* markdown 正文样式（.rich，见 Prose.astro） */
+.rich {
+  max-width: var(--container-reading);
+  color: var(--color-ink);
+  line-height: 1.75;
+}
+.rich > * + * {
+  margin-top: 1.1em;
+}
+.rich h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2em;
+  color: var(--color-ink);
+}
+.rich h2:lang(zh) {
   font-family: var(--font-cjk-sans);
 }
-
-.rich :where(h2, h3, h4) {
-  font-family: var(--font-display);
+.rich h3 {
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-top: 1.6em;
+}
+.rich a {
+  color: var(--color-primary);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+}
+.rich a:hover {
+  color: var(--color-primary-deep);
+}
+.rich ul,
+.rich ol {
+  padding-left: 1.25rem;
+}
+.rich ul {
+  list-style: disc;
+}
+.rich ol {
+  list-style: decimal;
+}
+.rich li + li {
+  margin-top: 0.4em;
+}
+.rich blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1rem;
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
+.rich strong {
+  font-weight: 600;
 }
 
-.rich :where(a) {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-line);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

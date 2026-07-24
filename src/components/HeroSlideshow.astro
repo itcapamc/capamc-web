@@ -1,0 +1,84 @@
+---
+import { cn } from "@/lib/cn";
+
+export type Slide = { title: string; image: string; imageAlt?: string };
+
+interface Props {
+  slides: Slide[];
+  class?: string;
+}
+
+const { slides, class: className } = Astro.props;
+---
+
+<div
+  class={cn("relative overflow-hidden rounded-card border border-line bg-paper-sunk", className)}
+  data-hero-slideshow
+>
+  {slides.map((slide, i) => (
+    <div
+      class="absolute inset-0 transition-opacity duration-(--motion-slow) ease-(--ease-seal)"
+      data-slide
+      style={{ opacity: i === 0 ? 1 : 0 }}
+    >
+      <img
+        src={slide.image}
+        alt={slide.imageAlt ?? slide.title}
+        loading={i === 0 ? "eager" : "lazy"}
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/5 to-transparent" />
+      <span class="absolute bottom-4 left-4 rounded-pill bg-paper/90 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-ink">
+        {slide.title}
+      </span>
+    </div>
+  ))}
+
+  {slides.length > 1 && (
+    <div class="absolute bottom-4 right-4 flex gap-2" data-dots>
+      {slides.map((slide, i) => (
+        <button
+          type="button"
+          aria-label={slide.title}
+          data-index={i}
+          class={cn("h-2.5 rounded-pill transition-all", i === 0 ? "w-6 bg-paper" : "w-2.5 bg-paper/50 hover:bg-paper/80")}
+        />
+      ))}
+    </div>
+  )}
+</div>
+
+<script>
+  const AUTOPLAY_MS = 5000;
+
+  document.querySelectorAll<HTMLElement>("[data-hero-slideshow]").forEach((root) => {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>("[data-slide]"));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-dots] button"));
+    if (slides.length <= 1) return;
+
+    let active = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const show = (next: number) => {
+      slides[active].style.opacity = "0";
+      dots[active]?.classList.replace("w-6", "w-2.5");
+      dots[active]?.classList.replace("bg-paper", "bg-paper/50");
+      active = next;
+      slides[active].style.opacity = "1";
+      dots[active]?.classList.replace("w-2.5", "w-6");
+      dots[active]?.classList.replace("bg-paper/50", "bg-paper");
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        if (timer) clearInterval(timer);
+      });
+    });
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion) {
+      timer = setInterval(() => show((active + 1) % slides.length), AUTOPLAY_MS);
+    }
+  });
+</script>

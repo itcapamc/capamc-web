@@ -1,0 +1,31 @@
+---
+import { cn } from "@/lib/cn";
+
+type Accent = "seal" | "jade" | "gold";
+
+const accentBorder: Record<Accent, string> = {
+  seal: "border-t-seal",
+  jade: "border-t-jade",
+  gold: "border-t-gold",
+};
+
+interface Props {
+  accent?: Accent;
+  class?: string;
+}
+
+const { accent = "seal", class: className } = Astro.props;
+---
+
+<div
+  class={cn(
+    "group relative overflow-hidden rounded-card border border-line border-t-8 bg-paper shadow-card",
+    "transition-[box-shadow,transform] duration-(--motion-base) hover:-translate-y-1 hover:shadow-card-hover",
+    accentBorder[accent],
+    className,
+  )}
+>
+  <div class="p-6">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,27 @@
+---
+import { cn } from "@/lib/cn";
+import { publicImageExists } from "@/lib/assets";
+
+interface Props {
+  src?: string;
+  alt?: string;
+  class?: string;
+  rounded?: string;
+}
+
+const { src, alt = "", class: className, rounded = "rounded-card" } = Astro.props;
+const ok = publicImageExists(src);
+---
+
+<div class={cn("relative overflow-hidden bg-paper-sunk", rounded, className)}>
+  {ok ? (
+    <img src={src} alt={alt} class="absolute inset-0 h-full w-full object-cover" />
+  ) : (
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 grid place-items-center bg-gradient-to-br from-primary/15 via-paper-sunk to-jade/10"
+    >
+      <span class="font-cjk-sans text-[28%] leading-none text-primary/25 select-none">华</span>
+    </div>
+  )}
+</div>
