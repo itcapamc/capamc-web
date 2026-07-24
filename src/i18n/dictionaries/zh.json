@@ -1,0 +1,37 @@
+{
+  "org": {
+    "short": "CAPA-MC",
+    "name": "蒙郡华裔家长联合会"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "clubs": "学生社团",
+    "awards": "奖励表彰",
+    "give": "支持我们",
+    "news": "新闻活动",
+    "resources": "资源"
+  },
+  "actions": {
+    "join": "加入我们",
+    "donate": "捐助",
+    "readMore": "了解更多",
+    "viewAll": "查看全部",
+    "back": "返回",
+    "skipToContent": "跳到正文",
+    "switchLang": "English",
+    "menu": "菜单",
+    "close": "关闭",
+    "visitSite": "访问网站"
+  },
+  "labels": {
+    "latestNews": "最新",
+    "getInvolved": "参与其中",
+    "quickLinks": "快速链接",
+    "followUs": "关注我们"
+  },
+  "footer": {
+    "tagline": "连接家庭、学校与社区。",
+    "rights": "版权所有。"
+  }
+}

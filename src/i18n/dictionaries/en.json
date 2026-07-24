@@ -1,0 +1,37 @@
+{
+  "org": {
+    "short": "CAPA-MC",
+    "name": "Chinese American Parent Association of Montgomery County"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "clubs": "Student Clubs",
+    "awards": "Awards",
+    "give": "Ways to Give",
+    "news": "News & Events",
+    "resources": "Resources"
+  },
+  "actions": {
+    "join": "Join us",
+    "donate": "Donate",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "back": "Back",
+    "skipToContent": "Skip to content",
+    "switchLang": "中文",
+    "menu": "Menu",
+    "close": "Close",
+    "visitSite": "Visit site"
+  },
+  "labels": {
+    "latestNews": "Latest",
+    "getInvolved": "Get involved",
+    "quickLinks": "Quick links",
+    "followUs": "Follow us"
+  },
+  "footer": {
+    "tagline": "Bridging families, schools, and community.",
+    "rights": "All rights reserved."
+  }
+}
