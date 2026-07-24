@@ -1,0 +1,180 @@
+media:
+  input: public/images/uploads
+  output: /images/uploads
+
+content:
+  - name: home-en
+    label: "首页 — English"
+    type: file
+    path: src/content/home/en.md
+    fields: &homeFields
+      - name: hero
+        type: object
+        fields:
+          - { name: eyebrow, type: string }
+          - { name: heading, type: string }
+          - { name: intro, type: text }
+          - name: primary
+            type: object
+            fields:
+              - { name: label, type: string }
+              - { name: href, type: string }
+          - name: secondary
+            type: object
+            fields:
+              - { name: label, type: string }
+              - { name: href, type: string }
+          - { name: image, type: image }
+          - { name: imageAlt, type: string }
+      - name: slides
+        type: object
+        list: true
+        fields:
+          - { name: title, type: string }
+          - { name: image, type: image }
+          - { name: imageAlt, type: string }
+      - name: pillars
+        type: object
+        list: true
+        fields:
+          - { name: title, type: string }
+          - { name: body, type: text }
+          - name: accent
+            type: select
+            options:
+              values: [seal, jade, gold]
+      - { name: body, label: "正文（首页使命段落）", type: rich-text }
+  - name: home-zh
+    label: "首页 — 中文"
+    type: file
+    path: src/content/home/zh.md
+    fields: *homeFields
+
+  - name: about-en
+    label: "关于我们 — English"
+    type: file
+    path: src/content/about/en.md
+    fields: &proseFields
+      - { name: title, type: string }
+      - { name: intro, type: text }
+      - { name: image, type: image }
+      - { name: imageAlt, type: string }
+      - { name: body, label: "正文", type: rich-text }
+  - name: about-zh
+    label: "关于我们 — 中文"
+    type: file
+    path: src/content/about/zh.md
+    fields: *proseFields
+
+  - name: resources-en
+    label: "资源 — English"
+    type: file
+    path: src/content/resources/en.md
+    fields: *proseFields
+  - name: resources-zh
+    label: "资源 — 中文"
+    type: file
+    path: src/content/resources/zh.md
+    fields: *proseFields
+
+  - name: give-en
+    label: "支持我们 — English"
+    type: file
+    path: src/content/give/en.md
+    fields: &giveFields
+      - { name: title, type: string }
+      - { name: intro, type: text }
+      - name: methods
+        type: object
+        list: true
+        fields:
+          - { name: title, type: string }
+          - { name: body, type: text }
+          - name: cta
+            type: object
+            fields:
+              - { name: label, type: string }
+              - { name: href, type: string }
+          - name: accent
+            type: select
+            options:
+              values: [seal, jade, gold]
+      - { name: body, label: "正文（志愿者段落）", type: rich-text }
+  - name: give-zh
+    label: "支持我们 — 中文"
+    type: file
+    path: src/content/give/zh.md
+    fields: *giveFields
+
+  - name: clubs-en
+    label: "学生社团 — English"
+    type: file
+    path: src/content/clubs/en.yaml
+    format: yaml
+    fields: &clubsFields
+      - { name: title, type: string }
+      - { name: intro, type: text }
+      - name: items
+        type: object
+        list: true
+        fields:
+          - { name: name, type: string }
+          - { name: category, type: string }
+          - { name: description, type: text }
+          - { name: image, type: image }
+          - { name: contact, type: string }
+          - { name: link, type: string }
+  - name: clubs-zh
+    label: "学生社团 — 中文"
+    type: file
+    path: src/content/clubs/zh.yaml
+    format: yaml
+    fields: *clubsFields
+
+  - name: awards-en
+    label: "奖励表彰 — English"
+    type: file
+    path: src/content/awards/en.yaml
+    format: yaml
+    fields: &awardsFields
+      - { name: title, type: string }
+      - { name: intro, type: text }
+      - name: items
+        type: object
+        list: true
+        fields:
+          - { name: name, type: string }
+          - { name: type, type: string }
+          - { name: description, type: text }
+          - { name: deadline, type: string }
+          - name: link
+            type: object
+            fields:
+              - { name: label, type: string }
+              - { name: href, type: string }
+  - name: awards-zh
+    label: "奖励表彰 — 中文"
+    type: file
+    path: src/content/awards/zh.yaml
+    format: yaml
+    fields: *awardsFields
+
+  - name: news-en
+    label: "新闻活动 — English"
+    type: collection
+    path: src/content/news/en
+    filename: "{title}.md"
+    fields: &newsFields
+      - { name: title, type: string }
+      - { name: date, type: date }
+      - { name: location, type: string }
+      - { name: excerpt, type: text }
+      - { name: image, type: image }
+      - { name: imageAlt, type: string }
+      - { name: body, label: "正文", type: rich-text }
+  - name: news-zh
+    label: "新闻活动 — 中文"
+    type: collection
+    path: src/content/news/zh
+    filename: "{title}.md"
+    fields: *newsFields
