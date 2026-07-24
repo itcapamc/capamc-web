@@ -1,0 +1,42 @@
+---
+import Container from "@/components/Container.astro";
+import Logo from "@/components/Logo.astro";
+import { cn } from "@/lib/cn";
+import type { Locale, Dictionary } from "@/i18n/locales";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const base = `/${locale}`;
+const NAV = ["about", "clubs", "awards", "news", "resources", "give"] as const;
+---
+
+<footer class="mt-auto border-t border-line bg-paper-sunk">
+  <Container class="grid gap-10 py-14 md:grid-cols-[1.5fr_1fr]">
+    <div>
+      <Logo class="h-20" />
+      <p lang={locale} class={cn("mt-4 max-w-reading text-sm text-ink-soft", locale === "zh" && "font-cjk-sans")}>
+        {dict.org.name} · {dict.footer.tagline}
+      </p>
+    </div>
+
+    <nav aria-label="Footer">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-ink-soft">{dict.labels.quickLinks}</p>
+      <ul class="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
+        {NAV.map((key) => (
+          <li>
+            <a href={`${base}/${key}`} class="text-sm text-ink transition-colors hover:text-primary">
+              {dict.nav[key]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </Container>
+  <Container class="border-t border-line py-6">
+    <p class="text-xs text-ink-soft">© {new Date().getFullYear()} {dict.org.name}. {dict.footer.rights}</p>
+  </Container>
+</footer>

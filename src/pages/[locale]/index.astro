@@ -1,15 +1,7 @@
 ---
-import "../../styles/global.css";
-import Container from "@/components/Container.astro";
-import Button from "@/components/Button.astro";
-import Card from "@/components/Card.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Section from "@/components/Section.astro";
-import Logo from "@/components/Logo.astro";
-import Seal from "@/components/signature/Seal.astro";
-import BilingualHeading from "@/components/signature/BilingualHeading.astro";
-import ImageFrame from "@/components/ImageFrame.astro";
-import HeroSlideshow from "@/components/HeroSlideshow.astro";
-import Prose from "@/components/Prose.astro";
+import Card from "@/components/Card.astro";
 import { getDictionary, type Locale } from "@/i18n/locales";
 
 export function getStaticPaths() {
@@ -20,40 +12,12 @@ const locale = Astro.params.locale as Locale;
 const dict = await getDictionary(locale);
 ---
 
-<html lang={locale}>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{dict.org.name}</title>
-	</head>
-	<body class="bg-paper text-ink font-body">
-		<main class="mx-auto max-w-content px-gutter py-20">
-			<div class="flex items-center gap-4">
-				<Logo class="h-16" priority />
-				<Seal />
-			</div>
-			<BilingualHeading as="h1" size="hero" class="mt-6" primary={dict.org.name} primaryLang={locale} />
-			<Container class="mt-8 grid gap-6 sm:grid-cols-3">
-				<Card accent="seal">Seal card</Card>
-				<Card accent="jade">Jade card</Card>
-				<Card accent="gold">Gold card</Card>
-			</Container>
-			<Section eyebrow="component smoke test" sunk>
-				<ImageFrame class="aspect-[4/3] w-full max-w-md" />
-				<HeroSlideshow
-					class="mt-6 aspect-[4/3] w-full max-w-md"
-					slides={[
-						{ title: "A", image: "/images/photo-community.jpg" },
-						{ title: "B", image: "/images/photo-advocacy.jpg" },
-					]}
-				/>
-				<Prose class="mt-6">
-					<p>Smoke test paragraph.</p>
-				</Prose>
-				<Button href="/en/give" class="mt-6">{dict.actions.donate}</Button>
-			</Section>
-		</main>
-	</body>
-</html>
+<BaseLayout locale={locale} dict={dict}>
+	<Section eyebrow="layout smoke test" sunk>
+		<div class="grid gap-6 sm:grid-cols-3">
+			<Card accent="seal">Seal card</Card>
+			<Card accent="jade">Jade card</Card>
+			<Card accent="gold">Gold card</Card>
+		</div>
+	</Section>
+</BaseLayout>

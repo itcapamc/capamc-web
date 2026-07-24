@@ -1,0 +1,95 @@
+---
+import Container from "@/components/Container.astro";
+import Logo from "@/components/Logo.astro";
+import { cn } from "@/lib/cn";
+import type { Locale, Dictionary } from "@/i18n/locales";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+
+const NAV = ["about", "clubs", "awards", "news", "resources"] as const;
+
+const pathname = Astro.url.pathname;
+const base = `/${locale}`;
+const other: Locale = locale === "en" ? "zh" : "en";
+const switchHref = pathname.replace(/^\/(en|zh)/, `/${other}`);
+const isActive = (href: string) => (href === base ? pathname === base : pathname.startsWith(href));
+
+const links = NAV.map((key) => ({
+  key,
+  label: dict.nav[key],
+  href: `${base}/${key}`,
+}));
+---
+
+<header class="sticky top-0 z-50 border-b border-line bg-paper">
+  <Container class="flex h-16 items-center justify-between gap-4">
+    <a href={base} class="flex items-center" aria-label={dict.org.name}>
+      <Logo class="h-12" priority />
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class={cn(
+            "text-sm transition-colors hover:text-primary",
+            isActive(l.href) ? "font-medium text-primary" : "text-ink-soft",
+          )}
+        >
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={switchHref}
+        hreflang={other}
+        class="rounded-pill border border-line px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:border-primary hover:text-primary"
+      >
+        {dict.actions.switchLang}
+      </a>
+      <a
+        href={`${base}/give`}
+        class="hidden rounded-pill bg-primary px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-primary-deep sm:inline-flex"
+      >
+        {dict.actions.donate}
+      </a>
+      <details class="group lg:hidden">
+        <summary
+          class="inline-flex h-9 w-9 list-none items-center justify-center rounded-md border border-line [&::-webkit-details-marker]:hidden"
+          aria-label={dict.actions.menu}
+        >
+          <span class="text-lg leading-none group-open:hidden">☰</span>
+          <span class="hidden text-lg leading-none group-open:inline">✕</span>
+        </summary>
+        <nav
+          class="absolute inset-x-0 top-16 border-t border-line bg-paper shadow-card"
+          aria-label="Mobile"
+        >
+          <Container class="flex flex-col py-3">
+            {links.map((l) => (
+              <a
+                href={l.href}
+                class={cn("py-2 text-sm", isActive(l.href) ? "font-medium text-primary" : "text-ink")}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href={`${base}/give`}
+              class="mt-2 inline-flex w-fit rounded-pill bg-primary px-4 py-2 text-sm font-bold text-white"
+            >
+              {dict.actions.donate}
+            </a>
+          </Container>
+        </nav>
+      </details>
+    </div>
+  </Container>
+</header>
