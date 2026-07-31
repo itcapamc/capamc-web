@@ -1,59 +1,50 @@
 title: 学生社团
-intro: >-
-  CAPA-MC 拥有丰富多元的社团，成员是从小学到高中充满才华与热情的学生。
+intro: CAPA-MC 拥有丰富多元的社团，成员是从小学到高中充满才华与热情的学生。
 items:
   - name: 华裔家长与学生协会（CAPSA）
     category: 社区
+    description: 成立于 1988 年，CAPSA 通过促进跨文化理解、协助新移民家庭融入蒙郡教育系统， 来支持华裔社区。
     link: https://www.capsa-mc.org/
-    description: >-
-      成立于 1988 年，CAPSA 通过促进跨文化理解、协助新移民家庭融入蒙郡教育系统，
-      来支持华裔社区。
   - name: 种植与奉献社（G&G）
     category: 服务
+    description: 致力于通过有机园艺服务社区、帮助有需要的人，并推广环保实践。
     link: https://sites.google.com/view/capa-mcggc/
-    description: >-
-      致力于通过有机园艺服务社区、帮助有需要的人，并推广环保实践。
   - name: 少年记者社（JRC）
     category: 新闻
+    description: 一群第二代华裔青少年，希望通过新闻报道为华裔社区带来积极的改变。
     link: https://www.capajrc.org/
-    description: >-
-      一群第二代华裔青少年，希望通过新闻报道为华裔社区带来积极的改变。
   - name: IT 社
     category: 科技
-    link: https://capamc.org/?page_id=420
     description: 为本地社团与组织提供免费、高质量的 IT 服务。
+    link: https://capamc.org/?page_id=420
   - name: iTeach 社
     category: 教育
+    description: 为长者提供每周在线英语课程，已服务超过 120 名学员。
     link: https://www.iteachcapa.org/
-    description: >-
-      为长者提供每周在线英语课程，已服务超过 120 名学员。
   - name: iHear 项目
     category: 融合
-    link: https://ihearprogram.org
-    description: >-
-      致力于创新、语言学习与推动沟通无障碍，支持有听力障碍的学生。
+    description: 致力于创新、语言学习与推动沟通无障碍，支持有听力障碍的学生。
+    link: https://ihearus.org
   - name: 特殊教育平等发展协会（SEEDS）
     category: 倡导
+    description: 由学生发起的残障意识倡议，致力于为特殊教育学生增加机会。
     link: https://growthxtogether.wixsite.com/seeds
-    description: >-
-      由学生发起的残障意识倡议，致力于为特殊教育学生增加机会。
   - name: 跑动与挥拍网球社（RHTC）
     category: 运动
+    description: 由学生运营的运动社团，举办网球活动以提升球技、推广这项运动。
     link: https://capamc.org/?page_id=845
-    description: >-
-      由学生运营的运动社团，举办网球活动以提升球技、推广这项运动。
   - name: THRIVE 社
     category: 健康
-    link: http://thrive.capamc.org
     description: 通过韧性与健康生活方式，促进整体身心健康。
+    link: http://thrive.capamc.org
   - name: 青少年排球与篮球社
     category: 运动
-    link: https://capamc.org/youth-volleyball-and-basketball-club/
     description: 提供基础训练，通过运动促进青少年健康。
+    link: https://capamc.org/youth-volleyball-and-basketball-club/
   - name: 青少年服务社
     category: 服务
-    link: https://capamc.org/youth-service-club/
     description: 举办讲座、食品募捐及社区服务活动。
+    link: https://capamc.org/youth-service-club/
   - name: 马里兰青少年武术社
     category: 文化
     description: 教授武术课程，弘扬中华文化。
@@ -62,10 +53,8 @@ items:
     description: 每周日组织跑步活动，倡导健康生活方式。
   - name: 音乐天使社
     category: 音乐
-    description: >-
-      在长者中心与社区活动中演出，展现音乐疗愈的力量。
+    description: 在长者中心与社区活动中演出，展现音乐疗愈的力量。
   - name: 温暖之心（Hearts of Comfort）
     category: 服务
+    description: 为病患与长者制作手工爱心枕，带去慰藉、支持与关怀。
     link: https://heartsofcomfort.org
-    description: >-
-      为病患与长者制作手工爱心枕，带去慰藉、支持与关怀。
